@@ -1,0 +1,46 @@
+{
+  "name": "@tolokacode/checkbox",
+  "version": "0.1.0",
+  "description": "TypeScript SDK for the Checkbox API (ПРРО, fiscal receipts in Ukraine)",
+  "license": "EUPL-1.2",
+  "author": "tolokacode",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tolokacode/checkbox-js.git"
+  },
+  "keywords": [
+    "checkbox",
+    "prro",
+    "ukraine",
+    "fiscal",
+    "receipts"
+  ],
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "build": "tsc",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit",
+    "generate": "openapi-typescript https://api.checkbox.in.ua/api/openapi.json -o src/schema.ts",
+    "prepublishOnly": "npm run build"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.4",
+    "openapi-typescript": "^7.13.0",
+    "typescript": "^5.9.3",
+    "vitest": "^5.0.3"
+  }
+}
