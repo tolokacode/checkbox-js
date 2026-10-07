@@ -1,5 +1,6 @@
+import { readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
-import { Checkbox, CheckboxError } from '../src/index.js';
+import { Checkbox, CheckboxError, type RequestLog, VERSION } from '../src/index.js';
 
 function fakeFetch(routes: Record<string, (init: RequestInit) => [number, unknown]>) {
   const calls: { path: string; init: RequestInit }[] = [];
@@ -77,5 +78,45 @@ describe('Checkbox', () => {
 
   it('needs a PIN or login and password', () => {
     expect(() => new Checkbox({ licenseKey: 'lic' })).toThrow();
+  });
+
+  it('uses a saved token and reports new ones', async () => {
+    const saved: string[] = [];
+    const { fetch, calls } = fakeFetch({
+      'POST /cashier/signinPinCode': () => [200, { access_token: 'new' }],
+      'GET /cashier/me': (init) => ((init.headers as Record<string, string>).Authorization === 'Bearer old' ? [401, {}] : [200, { ok: true }]),
+    });
+    const checkbox = new Checkbox({ licenseKey: 'lic', pinCode: '123', token: 'old', onToken: (token) => void saved.push(token), fetch });
+    await checkbox.me();
+    expect(calls.map((c) => c.path)).toEqual(['GET /cashier/me', 'POST /cashier/signinPinCode', 'GET /cashier/me']);
+    expect(saved).toEqual(['new']);
+  });
+
+  it('returns the existing receipt when a sale is retried', async () => {
+    const { fetch } = fakeFetch({
+      'POST /cashier/signinPinCode': () => [200, { access_token: 'tok' }],
+      'POST /receipts/sell': () => [409, { message: 'exists' }],
+      'GET /receipts/r1': () => [200, { id: 'r1', status: 'DONE' }],
+    });
+    const checkbox = new Checkbox({ licenseKey: 'lic', pinCode: '123', fetch });
+    expect(await checkbox.sell({ id: 'r1', goods: [], payments: [] })).toEqual({ id: 'r1', status: 'DONE' });
+  });
+
+  it('logs requests', async () => {
+    const logs: RequestLog[] = [];
+    const { fetch } = fakeFetch({
+      'POST /cashier/signinPinCode': () => [200, { access_token: 'tok' }],
+      'GET /cashier/me': () => [403, { message: 'no' }],
+    });
+    const checkbox = new Checkbox({ licenseKey: 'lic', pinCode: '123', onRequest: (log) => logs.push(log), fetch });
+    await checkbox.me().catch(() => {});
+    expect(logs.map(({ method, path, status, error }) => ({ method, path, status, error }))).toEqual([
+      { method: 'POST', path: '/cashier/signinPinCode', status: 200, error: undefined },
+      { method: 'GET', path: '/cashier/me', status: 403, error: 'no' },
+    ]);
+  });
+
+  it('sends the package version', () => {
+    expect(VERSION).toBe(JSON.parse(readFileSync('package.json', 'utf8')).version);
   });
 });

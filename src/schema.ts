@@ -2766,7 +2766,7 @@ export interface components {
              * @description Застаріле поле, використовуйте rounding_mode
              * @default false
              */
-            rounding: boolean;
+            rounding?: boolean;
             /** @description `ROUND_10` - заокруглення до 10 копійок (як було з полем rounding), `ROUND_50` - заокруглення до 50 копійок (за правилами з 01.10.2025) */
             rounding_mode?: components["schemas"]["RoundingModeEnum"];
             delivery?: components["schemas"]["DeliveryPayload"];
@@ -2780,7 +2780,7 @@ export interface components {
              * @description type
              * @default []
              */
-            payments: (components["schemas"]["CashPaymentPayload"] | components["schemas"]["CardPaymentPayload"] | components["schemas"]["ObsoleteCardPaymentPayload"])[];
+            payments?: (components["schemas"]["CashPaymentPayload"] | components["schemas"]["CardPaymentPayload"] | components["schemas"]["ObsoleteCardPaymentPayload"])[];
             /** Header */
             header?: string;
             /** Footer */
@@ -2828,7 +2828,7 @@ export interface components {
              * @default barcode
              * @enum {string}
              */
-            type: "barcode";
+            type?: "barcode";
             /**
              * Variant
              * @enum {string}
@@ -2838,7 +2838,7 @@ export interface components {
              * Scale
              * @default 0.7
              */
-            scale: number;
+            scale?: number;
             /** Label */
             label?: string;
             /** Value */
@@ -2869,7 +2869,7 @@ export interface components {
              * @default code128
              * @enum {string}
              */
-            format: "code128" | "ean13";
+            format?: "code128" | "ean13";
         };
         /** BaseBranchModel */
         BaseBranchModel: {
@@ -2985,7 +2985,7 @@ export interface components {
              * Left To Pay
              * @default 0
              */
-            left_to_pay: number;
+            left_to_pay?: number;
             /** Paid By Cash Sum */
             paid_by_cash_sum?: number;
             /**
@@ -3062,12 +3062,12 @@ export interface components {
              * Is Created Offline
              * @default false
              */
-            is_created_offline: boolean;
+            is_created_offline?: boolean;
             /**
              * Is Sent Dps
              * @default false
              */
-            is_sent_dps: boolean;
+            is_sent_dps?: boolean;
             fiscal_api_type?: components["schemas"]["FiscalAPIType"];
             delivery?: components["schemas"]["DeliveryPayload"];
         };
@@ -3203,7 +3203,7 @@ export interface components {
              * @default buttons
              * @enum {string}
              */
-            type: "buttons";
+            type?: "buttons";
             /** Buttons */
             buttons: components["schemas"]["ButtonItem"][][];
         };
@@ -3220,7 +3220,7 @@ export interface components {
              * @default CASHLESS
              * @enum {string}
              */
-            type: "CASHLESS";
+            type?: "CASHLESS";
             /** Pawnshop Is Return */
             pawnshop_is_return?: boolean;
             /** Operation Type */
@@ -3230,7 +3230,7 @@ export interface components {
              * Номер оплати
              * @default 1
              */
-            code: number;
+            code?: number;
             /** Value */
             value: number;
             /** Commission */
@@ -3240,7 +3240,7 @@ export interface components {
              * @description Використовуйте наступні значення: 'Подарунковий сертифікат', 'Талон', 'Жетон', 'Картка', 'Платіж через інтегратора <назва інтегратора>, наприклад (LIQPAY, WAYFORPAY, EVOPAY тощо)', 'Переказ через ННПП (ННПП – небанківський надавач платіжних послуг)', 'Переказ через ПТКС ННПП', 'Інтернет еквайринг', 'Інтернет банкінг', 'З поточного рахунку', 'Переказ через ПТКС банку', 'Фішка', 'Електронний грошовий замінник', 'Ігровий замінник гривні', 'Електронні гроші <назва>', 'Цифрові гроші <назва>', 'Криптовалюта <назва>'
              * @default Картка
              */
-            label: string;
+            label?: string;
             /**
              * Card Mask
              * @example 1111 11** **** **11
@@ -3291,7 +3291,7 @@ export interface components {
              * @default CASH
              * @enum {string}
              */
-            type: "CASH";
+            type?: "CASH";
             /** Pawnshop Is Return */
             pawnshop_is_return?: boolean;
             /** Operation Type */
@@ -3302,7 +3302,7 @@ export interface components {
              * Label
              * @default Готівка
              */
-            label: string;
+            label?: string;
         };
         /** CashRegisterDeviceModel */
         CashRegisterDeviceModel: {
@@ -3433,13 +3433,13 @@ export interface components {
              * Format: time-delta
              * @default 0
              */
-            current: number;
+            current?: number;
             /**
              * Total
              * Format: time-delta
              * @default 0
              */
-            total: number;
+            total?: number;
         };
         /** CashRegisterSettings */
         CashRegisterSettings: {
@@ -3492,13 +3492,13 @@ export interface components {
              * @default bearer
              * @constant
              */
-            type: "bearer";
+            type?: "bearer";
             /**
              * Authentication type
              * @default bearer
              * @constant
              */
-            token_type: "bearer";
+            token_type?: "bearer";
             /** JWT token */
             access_token: string;
         };
@@ -3541,57 +3541,57 @@ export interface components {
              * Self Return
              * @default true
              */
-            self_return: boolean;
+            self_return?: boolean;
             /**
              * Orders
              * @default false
              */
-            orders: boolean;
+            orders?: boolean;
             /**
              * Add Discounts
              * @default true
              */
-            add_discounts: boolean;
+            add_discounts?: boolean;
             /**
              * Editing Goods Sum
              * @default true
              */
-            editing_goods_sum: boolean;
+            editing_goods_sum?: boolean;
             /**
              * Deferred Receipt
              * @default true
              */
-            deferred_receipt: boolean;
+            deferred_receipt?: boolean;
             /**
              * Editing Good Price
              * @default true
              */
-            editing_good_price: boolean;
+            editing_good_price?: boolean;
             /**
              * Can Add Manual Good
              * @default true
              */
-            can_add_manual_good: boolean;
+            can_add_manual_good?: boolean;
             /**
              * Service In
              * @default true
              */
-            service_in: boolean;
+            service_in?: boolean;
             /**
              * Service Out
              * @default true
              */
-            service_out: boolean;
+            service_out?: boolean;
             /**
              * Returns
              * @default true
              */
-            returns: boolean;
+            returns?: boolean;
             /**
              * Sales
              * @default true
              */
-            sales: boolean;
+            sales?: boolean;
             /** Card Payment */
             card_payment?: boolean;
             /** Cash Payment */
@@ -3606,74 +3606,74 @@ export interface components {
              * Branch Params
              * @default true
              */
-            branch_params: boolean;
+            branch_params?: boolean;
             /**
              * Reports History
              * @default true
              */
-            reports_history: boolean;
+            reports_history?: boolean;
             /**
              * Additional Service Receipt
              * @default false
              */
-            additional_service_receipt: boolean;
+            additional_service_receipt?: boolean;
             /**
              * Free Return
              * @default false
              */
-            free_return: boolean;
+            free_return?: boolean;
             /**
              * Ettn
              * @default true
              */
-            ettn: boolean;
+            ettn?: boolean;
             /**
              * Add Receipt Discount
              * @default true
              */
-            add_receipt_discount: boolean;
+            add_receipt_discount?: boolean;
             /**
              * Round Discount
              * @default false
              */
-            round_discount: boolean;
+            round_discount?: boolean;
             /**
              * Bin In Promotions
              * @default true
              */
-            bin_in_promotions: boolean;
+            bin_in_promotions?: boolean;
             /**
              * Can Change Order Payments Types
              * @default false
              */
-            can_change_order_payments_types: boolean;
+            can_change_order_payments_types?: boolean;
             /**
              * Inventory Edit
              * @default false
              */
-            inventory_edit: boolean;
+            inventory_edit?: boolean;
             /**
              * Restrict Alcohol
              * @default false
              */
-            restrict_alcohol: boolean;
+            restrict_alcohol?: boolean;
             /**
              * Limit Cash Sale
              * @default false
              */
-            limit_cash_sale: boolean;
+            limit_cash_sale?: boolean;
             /**
              * Access Superkasa
              * @default false
              */
-            access_superkasa: boolean;
+            access_superkasa?: boolean;
             /**
              * Use Loyalty Card Gw
              * @default false
              */
-            use_loyalty_card_gw: boolean;
+            use_loyalty_card_gw?: boolean;
             /** @default UNSET */
-            orders_source: components["schemas"]["OrderSource"];
+            orders_source?: components["schemas"]["OrderSource"];
         };
         /** CashierSignIn */
         CashierSignIn: {
@@ -3749,7 +3749,7 @@ export interface components {
              * Skip Client Name Check
              * @default false
              */
-            skip_client_name_check: boolean;
+            skip_client_name_check?: boolean;
             /** Z-Звіт сформований на стороні клієнта */
             report?: components["schemas"]["ReportPayload"];
             /** Офлайн фіскальний номер */
@@ -3767,7 +3767,7 @@ export interface components {
              * @default content
              * @enum {string}
              */
-            type: "content";
+            type?: "content";
             /** Content */
             content?: string;
         };
@@ -3856,25 +3856,25 @@ export interface components {
              * Discounts
              * @default []
              */
-            discounts: components["schemas"]["DiscountPayload"][];
+            discounts?: components["schemas"]["DiscountPayload"][];
             /**
              * Bonuses
              * @default []
              */
-            bonuses: components["schemas"]["BonusPayload"][];
+            bonuses?: components["schemas"]["BonusPayload"][];
             /**
              * Payments
              * @description type
              * @default []
              */
-            payments: (components["schemas"]["CashPaymentPayload"] | components["schemas"]["CardPaymentPayload"] | components["schemas"]["ObsoleteCardPaymentPayload"])[];
+            payments?: (components["schemas"]["CashPaymentPayload"] | components["schemas"]["CardPaymentPayload"] | components["schemas"]["ObsoleteCardPaymentPayload"])[];
             /**
              * Rounding
              * @deprecated
              * @description Застаріле поле, використовуйте rounding_mode
              * @default false
              */
-            rounding: boolean;
+            rounding?: boolean;
             /** @description `ROUND_10` - заокруглення до 10 копійок (як було з полем rounding), `ROUND_50` - заокруглення до 50 копійок (за правилами з 01.10.2025) */
             rounding_mode?: components["schemas"]["RoundingModeEnum"];
             /** Header */
@@ -3906,7 +3906,7 @@ export interface components {
              * Technical Return
              * @default false
              */
-            technical_return: boolean;
+            technical_return?: boolean;
             /** Is Pawnshop */
             is_pawnshop?: boolean;
             /** Context */
@@ -3925,7 +3925,7 @@ export interface components {
              * @description Строк дії в секундах, за замовчуванням рахунок перестає бути дійсним через 24 години. Мінімум тривалості - 60 секунд.
              * @default 86400
              */
-            validity: number;
+            validity?: number;
             /**
              * Redirect Url
              * Format: uri
@@ -4038,7 +4038,7 @@ export interface components {
              * Reversal
              * @default false
              */
-            reversal: boolean;
+            reversal?: boolean;
             /** Client Info */
             client_info?: string;
             /** Header */
@@ -4116,12 +4116,12 @@ export interface components {
              * Is Created Offline
              * @default false
              */
-            is_created_offline: boolean;
+            is_created_offline?: boolean;
             /**
              * Is Sent Dps
              * @default false
              */
-            is_sent_dps: boolean;
+            is_sent_dps?: boolean;
             fiscal_api_type?: components["schemas"]["FiscalAPIType"];
             type: components["schemas"]["ReceiptType"];
             transaction?: components["schemas"]["ShortTransaction"];
@@ -4157,7 +4157,7 @@ export interface components {
              * Technical Return
              * @default false
              */
-            technical_return: boolean;
+            technical_return?: boolean;
             /** Stock Code */
             stock_code?: string;
             currency_exchange?: components["schemas"]["CurrencyExchangeSchema"];
@@ -4210,7 +4210,7 @@ export interface components {
              * Reversal
              * @default false
              */
-            reversal: boolean;
+            reversal?: boolean;
             /** Client Info */
             client_info?: string;
             /** Commission */
@@ -4256,77 +4256,77 @@ export interface components {
              * Initial
              * @default 0
              */
-            initial: number;
+            initial?: number;
             /**
              * Balance
              * @default 0
              */
-            balance: number;
+            balance?: number;
             /**
              * Сума проданої валюти
              * @default 0
              */
-            sell_sum: number;
+            sell_sum?: number;
             /**
              * Reversal Sell Sum
              * @default 0
              */
-            reversal_sell_sum: number;
+            reversal_sell_sum?: number;
             /**
              * Convert Sell Sum
              * @default 0
              */
-            convert_sell_sum: number;
+            convert_sell_sum?: number;
             /**
              * Reversal Convert Sell Sum
              * @default 0
              */
-            reversal_convert_sell_sum: number;
+            reversal_convert_sell_sum?: number;
             /**
              * Сума купленої валюти
              * @default 0
              */
-            buy_sum: number;
+            buy_sum?: number;
             /**
              * Reversal Buy Sum
              * @default 0
              */
-            reversal_buy_sum: number;
+            reversal_buy_sum?: number;
             /**
              * Convert Buy Sum
              * @default 0
              */
-            convert_buy_sum: number;
+            convert_buy_sum?: number;
             /**
              * Reversal Convert Buy Sum
              * @default 0
              */
-            reversal_convert_buy_sum: number;
+            reversal_convert_buy_sum?: number;
             /**
              * Commission Sum
              * @default 0
              */
-            commission_sum: number;
+            commission_sum?: number;
             /**
              * Reversal Commission Sum
              * @default 0
              */
-            reversal_commission_sum: number;
+            reversal_commission_sum?: number;
             /**
              * Advance
              * @default 0
              */
-            advance: number;
+            advance?: number;
             /**
              * Reinforcement
              * @default 0
              */
-            reinforcement: number;
+            reinforcement?: number;
             /**
              * Collection
              * @default 0
              */
-            collection: number;
+            collection?: number;
             /**
              * Updated At
              * Format: date-time
@@ -4445,12 +4445,12 @@ export interface components {
              * Offline Mode
              * @default false
              */
-            offline_mode: boolean;
+            offline_mode?: boolean;
             /**
              * Stay Offline
              * @default false
              */
-            stay_offline: boolean;
+            stay_offline?: boolean;
             branch?: components["schemas"]["BranchModel"];
             /** Address */
             address?: string;
@@ -4598,12 +4598,12 @@ export interface components {
              * Delivery Phone
              * @default
              */
-            delivery_phone: string;
+            delivery_phone?: string;
             /**
              * Delivery Email
              * @default
              */
-            delivery_email: string;
+            delivery_email?: string;
             /** email адреси, куди буде доставлено чек після фіскалізації */
             emails?: string[];
             /** номер телефону, куди буде доставлено чек після фіскалізації по SMS або у Viber (УВАГА! Повідомлення буде надіслано тільки якщо для Вашої організації встановлено налаштування шлюзу відправки повідомлень!) */
@@ -4622,7 +4622,7 @@ export interface components {
              * Знижки та/або надбавки
              * @default []
              */
-            discounts: components["schemas"]["DiscountPayload"][];
+            discounts?: components["schemas"]["DiscountPayload"][];
         };
         /** ETTNPaymentSchema */
         ETTNPaymentSchema: {
@@ -4632,12 +4632,12 @@ export interface components {
              * Type
              * @default ETTN
              */
-            type: string;
+            type?: string;
             /**
              * Label
              * @default Експрес-накладна
              */
-            label: string;
+            label?: string;
             /** Ettn */
             ettn: string;
         };
@@ -4651,7 +4651,7 @@ export interface components {
              * @description Застаріле поле, використовуйте rounding_mode
              * @default true
              */
-            rounding: boolean;
+            rounding?: boolean;
             /** @description `ROUND_10` - заокруглення до 10 копійок (як було з полем rounding), `ROUND_50` - заокруглення до 50 копійок (за правилами з 01.10.2025) */
             rounding_mode?: components["schemas"]["RoundingModeEnum"];
             /** Footer */
@@ -4660,7 +4660,7 @@ export interface components {
              * Delivery
              * @default {}
              */
-            delivery: components["schemas"]["ETTNDeliverySchema"];
+            delivery?: components["schemas"]["ETTNDeliverySchema"];
             /** Relationid */
             relationId: string;
         };
@@ -4674,7 +4674,7 @@ export interface components {
              * @description Застаріле поле, використовуйте rounding_mode
              * @default true
              */
-            rounding: boolean;
+            rounding?: boolean;
             /** @description `ROUND_10` - заокруглення до 10 копійок (як було з полем rounding), `ROUND_50` - заокруглення до 50 копійок (за правилами з 01.10.2025) */
             rounding_mode?: components["schemas"]["RoundingModeEnum"];
             /** Footer */
@@ -4683,7 +4683,7 @@ export interface components {
              * Delivery
              * @default {}
              */
-            delivery: components["schemas"]["ETTNDeliverySchema"];
+            delivery?: components["schemas"]["ETTNDeliverySchema"];
             /** Goods */
             goods: components["schemas"]["ETTNGoodItemModel"][];
             /** Discounts */
@@ -4843,9 +4843,9 @@ export interface components {
              * Custom
              * @default false
              */
-            custom: boolean;
+            custom?: boolean;
             /** @default EXCEL */
-            export_extension: components["schemas"]["ReportExtensionType"];
+            export_extension?: components["schemas"]["ReportExtensionType"];
         };
         /**
          * ExtendedReportPayloadShort
@@ -4872,7 +4872,7 @@ export interface components {
             /** Назва звіту (наприклад, 'Звіт по ресторанам Х за DD.MM.YY') */
             title?: string;
             /** @default EXCEL */
-            export_extension: components["schemas"]["ReportExtensionType"];
+            export_extension?: components["schemas"]["ReportExtensionType"];
         };
         /** ExtendedTaxModel */
         ExtendedTaxModel: {
@@ -5041,14 +5041,14 @@ export interface components {
              * Виконується повернення товару
              * @default false
              */
-            is_return: boolean;
+            is_return?: boolean;
             /** ТІЛЬКИ ДЛЯ КАЗИНО! Ознака виплати виграшу */
             is_winnings_payout?: boolean;
             /**
              * Знижки та/або надбавки
              * @default []
              */
-            discounts: components["schemas"]["DiscountPayload"][];
+            discounts?: components["schemas"]["DiscountPayload"][];
             /**
              * Total Sum
              * @description Значення для розрахунку вартості товару від загальної суми
@@ -5183,7 +5183,7 @@ export interface components {
              * Children
              * @default []
              */
-            children: components["schemas"]["BaseGroupModel"][];
+            children?: components["schemas"]["BaseGroupModel"][];
         };
         /** HTTPError */
         HTTPError: {
@@ -5210,7 +5210,7 @@ export interface components {
              * @default image
              * @enum {string}
              */
-            type: "image";
+            type?: "image";
             /** Mime */
             mime?: string;
             /** Url */
@@ -5260,17 +5260,17 @@ export interface components {
              * Discounts
              * @default []
              */
-            discounts: components["schemas"]["DiscountPayload"][];
+            discounts?: components["schemas"]["DiscountPayload"][];
             /**
              * Payments
              * @default []
              */
-            payments: (components["schemas"]["CashPaymentPayload"] | components["schemas"]["CardPaymentPayload"] | components["schemas"]["ObsoleteCardPaymentPayload"])[];
+            payments?: (components["schemas"]["CashPaymentPayload"] | components["schemas"]["CardPaymentPayload"] | components["schemas"]["ObsoleteCardPaymentPayload"])[];
             /**
              * Bonuses
              * @default []
              */
-            bonuses: components["schemas"]["BonusPayload"][];
+            bonuses?: components["schemas"]["BonusPayload"][];
             /** Header */
             header?: string;
             /** Footer */
@@ -5279,7 +5279,7 @@ export interface components {
             barcode?: string;
             delivery?: components["schemas"]["DeliveryPayload"];
             /** @default SELL */
-            type: components["schemas"]["ReceiptType"];
+            type?: components["schemas"]["ReceiptType"];
             /**
              * Id
              * Format: uuid
@@ -5422,7 +5422,7 @@ export interface components {
              * @default CARD
              * @enum {string}
              */
-            type: "CARD";
+            type?: "CARD";
             /** Pawnshop Is Return */
             pawnshop_is_return?: boolean;
             /** Operation Type */
@@ -5432,7 +5432,7 @@ export interface components {
              * Номер оплати
              * @default 1
              */
-            code: number;
+            code?: number;
             /** Value */
             value: number;
             /** Commission */
@@ -5442,7 +5442,7 @@ export interface components {
              * @description Використовуйте наступні значення: 'Подарунковий сертифікат', 'Талон', 'Жетон', 'Картка', 'Платіж через інтегратора <назва інтегратора>, наприклад (LIQPAY, WAYFORPAY, EVOPAY тощо)', 'Переказ через ННПП (ННПП – небанківський надавач платіжних послуг)', 'Переказ через ПТКС ННПП', 'Інтернет еквайринг', 'Інтернет банкінг', 'З поточного рахунку', 'Переказ через ПТКС банку', 'Фішка', 'Електронний грошовий замінник', 'Ігровий замінник гривні', 'Електронні гроші <назва>', 'Цифрові гроші <назва>', 'Криптовалюта <назва>'
              * @default Картка
              */
-            label: string;
+            label?: string;
             /**
              * Card Mask
              * @example 1111 11** **** **11
@@ -5487,25 +5487,25 @@ export interface components {
              * @description Доступна кількість
              * @default 0
              */
-            available: number;
+            available?: number;
             /**
              * Default
              * @description Кількість кодів що запитується автоматично сервером CheckBox
              * @default 0
              */
-            default: number;
+            default?: number;
             /**
              * Minimal
              * @description Мінімальна кількість кодів при досягненні якої виконується отримання нових кодів
              * @default 0
              */
-            minimal: number;
+            minimal?: number;
             /**
              * Used
              * @description Кількість кодів, що відмічені використаними. Лічильник зкидається при отриманні нових кодів.
              * @default 0
              */
-            used: number;
+            used?: number;
             /**
              * Enough Offline Codes
              * @description Прапорець, що вказує на те, що у користувача достатня кількість кодів для роботи в офлайні
@@ -5531,25 +5531,25 @@ export interface components {
              * Discounts
              * @default []
              */
-            discounts: components["schemas"]["DiscountPayload"][];
+            discounts?: components["schemas"]["DiscountPayload"][];
             /**
              * Bonuses
              * @default []
              */
-            bonuses: components["schemas"]["BonusPayload"][];
+            bonuses?: components["schemas"]["BonusPayload"][];
             /**
              * Payments
              * @description type
              * @default []
              */
-            payments: (components["schemas"]["CashPaymentPayload"] | components["schemas"]["CardPaymentPayload"] | components["schemas"]["ObsoleteCardPaymentPayload"])[];
+            payments?: (components["schemas"]["CashPaymentPayload"] | components["schemas"]["CardPaymentPayload"] | components["schemas"]["ObsoleteCardPaymentPayload"])[];
             /**
              * Rounding
              * @deprecated
              * @description Застаріле поле, використовуйте rounding_mode
              * @default false
              */
-            rounding: boolean;
+            rounding?: boolean;
             /** @description `ROUND_10` - заокруглення до 10 копійок (як було з полем rounding), `ROUND_50` - заокруглення до 50 копійок (за правилами з 01.10.2025) */
             rounding_mode?: components["schemas"]["RoundingModeEnum"];
             /** Header */
@@ -5581,7 +5581,7 @@ export interface components {
              * Technical Return
              * @default false
              */
-            technical_return: boolean;
+            technical_return?: boolean;
             /** Is Pawnshop */
             is_pawnshop?: boolean;
             /** Context */
@@ -5632,7 +5632,7 @@ export interface components {
              * Box Id
              * @default []
              */
-            box_id: number[];
+            box_id?: number[];
             /** Client Name */
             client_name?: string;
             /** Client Phone Number */
@@ -5732,12 +5732,12 @@ export interface components {
              * Виконується повернення товару
              * @default false
              */
-            is_return: boolean;
+            is_return?: boolean;
             /**
              * Знижки та/або надбавки
              * @default []
              */
-            discounts: components["schemas"]["DiscountPayload"][];
+            discounts?: components["schemas"]["DiscountPayload"][];
             /**
              * Total Sum
              * @description Значення для розрахунку вартості товару від загальної суми
@@ -5798,17 +5798,17 @@ export interface components {
              * Discounts
              * @default []
              */
-            discounts: components["schemas"]["DiscountPayload"][];
+            discounts?: components["schemas"]["DiscountPayload"][];
             /**
              * Payments
              * @default []
              */
-            payments: (components["schemas"]["CashPaymentPayload"] | components["schemas"]["CardPaymentPayload"] | components["schemas"]["ObsoleteCardPaymentPayload"])[];
+            payments?: (components["schemas"]["CashPaymentPayload"] | components["schemas"]["CardPaymentPayload"] | components["schemas"]["ObsoleteCardPaymentPayload"])[];
             /**
              * Bonuses
              * @default []
              */
-            bonuses: components["schemas"]["BonusPayload"][];
+            bonuses?: components["schemas"]["BonusPayload"][];
             /** Header */
             header?: string;
             /** Footer */
@@ -5817,7 +5817,7 @@ export interface components {
             barcode?: string;
             delivery?: components["schemas"]["DeliveryPayload"];
             /** @default SELL */
-            type: components["schemas"]["ReceiptType"];
+            type?: components["schemas"]["ReceiptType"];
         };
         /**
          * OrderSource
@@ -5842,7 +5842,7 @@ export interface components {
              * Balance
              * @default 0
              */
-            balance: number;
+            balance?: number;
         };
         /** OrganizationModel */
         OrganizationModel: {
@@ -5866,7 +5866,7 @@ export interface components {
              * Account Info
              * @default []
              */
-            account_info: components["schemas"]["BankAccountInfo"][];
+            account_info?: components["schemas"]["BankAccountInfo"][];
             settings?: components["schemas"]["OrganizationSettings"];
             /**
              * Created At
@@ -5924,7 +5924,7 @@ export interface components {
              * Account Info
              * @default []
              */
-            account_info: components["schemas"]["BankAccountInfo"][];
+            account_info?: components["schemas"]["BankAccountInfo"][];
             settings?: components["schemas"]["OrganizationSettings"];
             /**
              * Created At
@@ -6227,7 +6227,7 @@ export interface components {
              * Pre Payment Receipts
              * @default []
              */
-            pre_payment_receipts: components["schemas"]["BasePrepaymentReceiptSchema"][];
+            pre_payment_receipts?: components["schemas"]["BasePrepaymentReceiptSchema"][];
             after_payment_receipt?: components["schemas"]["BasePrepaymentReceiptSchema"];
         };
         /** PrePaymentReceiptInfo */
@@ -6247,7 +6247,7 @@ export interface components {
              * Left To Pay
              * @default 0
              */
-            left_to_pay: number;
+            left_to_pay?: number;
             /** Paid By Cash Sum */
             paid_by_cash_sum?: number;
             /**
@@ -6292,25 +6292,25 @@ export interface components {
              * Discounts
              * @default []
              */
-            discounts: components["schemas"]["DiscountPayload"][];
+            discounts?: components["schemas"]["DiscountPayload"][];
             /**
              * Bonuses
              * @default []
              */
-            bonuses: components["schemas"]["BonusPayload"][];
+            bonuses?: components["schemas"]["BonusPayload"][];
             /**
              * Payments
              * @description type
              * @default []
              */
-            payments: (components["schemas"]["CashPaymentPayload"] | components["schemas"]["CardPaymentPayload"] | components["schemas"]["ObsoleteCardPaymentPayload"])[];
+            payments?: (components["schemas"]["CashPaymentPayload"] | components["schemas"]["CardPaymentPayload"] | components["schemas"]["ObsoleteCardPaymentPayload"])[];
             /**
              * Rounding
              * @deprecated
              * @description Застаріле поле, використовуйте rounding_mode
              * @default false
              */
-            rounding: boolean;
+            rounding?: boolean;
             /** @description `ROUND_10` - заокруглення до 10 копійок (як було з полем rounding), `ROUND_50` - заокруглення до 50 копійок (за правилами з 01.10.2025) */
             rounding_mode?: components["schemas"]["RoundingModeEnum"];
             /** Header */
@@ -6342,7 +6342,7 @@ export interface components {
              * Technical Return
              * @default false
              */
-            technical_return: boolean;
+            technical_return?: boolean;
             /** Is Pawnshop */
             is_pawnshop?: boolean;
             /** Context */
@@ -6470,7 +6470,7 @@ export interface components {
              * Returned Receipts Mapping
              * @default {}
              */
-            returned_receipts_mapping: {
+            returned_receipts_mapping?: {
                 [key: string]: string;
             };
         };
@@ -6582,12 +6582,12 @@ export interface components {
              * Is Created Offline
              * @default false
              */
-            is_created_offline: boolean;
+            is_created_offline?: boolean;
             /**
              * Is Sent Dps
              * @default false
              */
-            is_sent_dps: boolean;
+            is_sent_dps?: boolean;
             fiscal_api_type?: components["schemas"]["FiscalAPIType"];
             type: components["schemas"]["ReceiptType"];
             transaction?: components["schemas"]["ShortTransaction"];
@@ -6623,7 +6623,7 @@ export interface components {
              * Technical Return
              * @default false
              */
-            technical_return: boolean;
+            technical_return?: boolean;
             /** Stock Code */
             stock_code?: string;
             currency_exchange?: components["schemas"]["CurrencyExchangeSchema"];
@@ -6732,12 +6732,12 @@ export interface components {
              * Is Created Offline
              * @default false
              */
-            is_created_offline: boolean;
+            is_created_offline?: boolean;
             /**
              * Is Sent Dps
              * @default false
              */
-            is_sent_dps: boolean;
+            is_sent_dps?: boolean;
             /** Context */
             context?: {
                 [key: string]: string | number | boolean;
@@ -6746,7 +6746,7 @@ export interface components {
              * Technical Return
              * @default false
              */
-            technical_return: boolean;
+            technical_return?: boolean;
             /** Stock Code */
             stock_code?: string;
             /** Round Sum */
@@ -6825,25 +6825,25 @@ export interface components {
              * Discounts
              * @default []
              */
-            discounts: components["schemas"]["DiscountPayload"][];
+            discounts?: components["schemas"]["DiscountPayload"][];
             /**
              * Bonuses
              * @default []
              */
-            bonuses: components["schemas"]["BonusPayload"][];
+            bonuses?: components["schemas"]["BonusPayload"][];
             /**
              * Payments
              * @description type
              * @default []
              */
-            payments: (components["schemas"]["CashPaymentPayload"] | components["schemas"]["CardPaymentPayload"] | components["schemas"]["ObsoleteCardPaymentPayload"])[];
+            payments?: (components["schemas"]["CashPaymentPayload"] | components["schemas"]["CardPaymentPayload"] | components["schemas"]["ObsoleteCardPaymentPayload"])[];
             /**
              * Rounding
              * @deprecated
              * @description Застаріле поле, використовуйте rounding_mode
              * @default false
              */
-            rounding: boolean;
+            rounding?: boolean;
             /** @description `ROUND_10` - заокруглення до 10 копійок (як було з полем rounding), `ROUND_50` - заокруглення до 50 копійок (за правилами з 01.10.2025) */
             rounding_mode?: components["schemas"]["RoundingModeEnum"];
             /** Header */
@@ -6875,7 +6875,7 @@ export interface components {
              * Technical Return
              * @default false
              */
-            technical_return: boolean;
+            technical_return?: boolean;
             /** Is Pawnshop */
             is_pawnshop?: boolean;
             /** Context */
@@ -7066,7 +7066,7 @@ export interface components {
             /** Використання звіту (наприклад, для звіту по ТРЦ передається 'MALL') */
             usage?: components["schemas"]["ReportUsage"];
             /** @default EXCEL */
-            export_extension: components["schemas"]["ReportExtensionType"];
+            export_extension?: components["schemas"]["ReportExtensionType"];
         };
         /** RegisterPayLinkClientSidePayload */
         RegisterPayLinkClientSidePayload: {
@@ -7177,7 +7177,7 @@ export interface components {
              * Transaction Fail
              * @default false
              */
-            transaction_fail: boolean;
+            transaction_fail?: boolean;
             /** Rates */
             rates?: components["schemas"]["CurrencyRateModel"][];
             fiscal_api_type?: components["schemas"]["FiscalAPIType"];
@@ -7208,12 +7208,12 @@ export interface components {
              * Кількість чеків видачі готівки держателям ЕПЗ
              * @default 0
              */
-            cash_withdrawal_receipts_count: number;
+            cash_withdrawal_receipts_count?: number;
             /**
              * Кількість чеків обміну валют
              * @default 0
              */
-            currency_exchange_count: number;
+            currency_exchange_count?: number;
             /**
              * id останнього фіскального чека
              * Format: uuid
@@ -7227,22 +7227,22 @@ export interface components {
              * Сума заокруглень у більшу сторону у чеках продажу
              * @default 0
              */
-            sales_round_up: number;
+            sales_round_up?: number;
             /**
              * Сума заокруглень у меньшу сторону у чеках продажу
              * @default 0
              */
-            sales_round_down: number;
+            sales_round_down?: number;
             /**
              * Сума заокруглень у більшу сторону у чеках повернення
              * @default 0
              */
-            returns_round_up: number;
+            returns_round_up?: number;
             /**
              * Сума заокруглень у меньшу сторону у чеках повернення
              * @default 0
              */
-            returns_round_down: number;
+            returns_round_down?: number;
             /** Сума знижок */
             discounts_sum?: number;
             /** Сума надбавок */
@@ -7301,12 +7301,12 @@ export interface components {
              * Сума видачі готівки держателям ЕПЗ
              * @default 0
              */
-            cash_withdrawal: number;
+            cash_withdrawal?: number;
             /**
              * Сума комісії банку по видачі готівки держателям ЕПЗ
              * @default 0
              */
-            cash_withdrawal_commission: number;
+            cash_withdrawal_commission?: number;
         };
         /**
          * ReportStatus
@@ -7391,7 +7391,7 @@ export interface components {
              * Included
              * @default true
              */
-            included: boolean;
+            included?: boolean;
             /** Is Gambling */
             is_gambling?: boolean;
             /** Decimal Sell Sum */
@@ -7457,7 +7457,7 @@ export interface components {
              * Ознака вкладеності податку
              * @default true
              */
-            included: boolean;
+            included?: boolean;
             /** Податок для гемблінгу */
             is_gambling?: boolean;
             /** No Vat */
@@ -7503,12 +7503,12 @@ export interface components {
             /** Використання звіту (наприклад, для звіту по ТРЦ передається 'MALL') */
             usage?: components["schemas"]["ReportUsage"];
             /** @default EXCEL */
-            export_extension: components["schemas"]["ReportExtensionType"];
+            export_extension?: components["schemas"]["ReportExtensionType"];
             /**
              * Organization Info
              * @default false
              */
-            organization_info: boolean;
+            organization_info?: boolean;
         };
         /** ReturnPrepaymentChainPayload */
         ReturnPrepaymentChainPayload: {
@@ -7522,7 +7522,7 @@ export interface components {
              * @description Застаріле поле, використовуйте rounding_mode
              * @default false
              */
-            rounding: boolean;
+            rounding?: boolean;
             /** @description `ROUND_10` - заокруглення до 10 копійок (як було з полем rounding), `ROUND_50` - заокруглення до 50 копійок (за правилами з 01.10.2025) */
             rounding_mode?: components["schemas"]["RoundingModeEnum"];
             delivery?: components["schemas"]["DeliveryPayload"];
@@ -7530,12 +7530,12 @@ export interface components {
              * Skip Total Cash Validation
              * @default false
              */
-            skip_total_cash_validation: boolean;
+            skip_total_cash_validation?: boolean;
             /**
              * Check Ettn
              * @default false
              */
-            check_ettn: boolean;
+            check_ettn?: boolean;
         };
         /**
          * RoundingModeEnum
@@ -7860,7 +7860,7 @@ export interface components {
              * Skip Client Name Check
              * @default false
              */
-            skip_client_name_check: boolean;
+            skip_client_name_check?: boolean;
             /** Z-Звіт сформований на стороні клієнта */
             report?: components["schemas"]["ReportPayload"];
         };
@@ -7886,7 +7886,7 @@ export interface components {
              * Account Info
              * @default []
              */
-            account_info: components["schemas"]["BankAccountInfo"][];
+            account_info?: components["schemas"]["BankAccountInfo"][];
             settings?: components["schemas"]["OrganizationSettings"];
         };
         /** ShortReceiptBranchDTO */
@@ -8015,12 +8015,12 @@ export interface components {
              * Is Created Offline
              * @default false
              */
-            is_created_offline: boolean;
+            is_created_offline?: boolean;
             /**
              * Is Sent Dps
              * @default false
              */
-            is_sent_dps: boolean;
+            is_sent_dps?: boolean;
             fiscal_api_type?: components["schemas"]["FiscalAPIType"];
             type: components["schemas"]["ReceiptType"];
             transaction?: components["schemas"]["ShortTransaction"];
@@ -8056,7 +8056,7 @@ export interface components {
              * Technical Return
              * @default false
              */
-            technical_return: boolean;
+            technical_return?: boolean;
             /** Stock Code */
             stock_code?: string;
             currency_exchange?: components["schemas"]["CurrencyExchangeSchema"];
@@ -8191,7 +8191,7 @@ export interface components {
              * @default social
              * @enum {string}
              */
-            type: "social";
+            type?: "social";
             /** Links */
             links: components["schemas"]["SocialLink"][];
         };
@@ -8342,7 +8342,7 @@ export interface components {
              * @default text
              * @enum {string}
              */
-            type: "text";
+            type?: "text";
             /** Content */
             content?: string;
         };
@@ -8564,12 +8564,12 @@ export interface components {
              * Is Created Offline
              * @default false
              */
-            is_created_offline: boolean;
+            is_created_offline?: boolean;
             /**
              * Is Sent Dps
              * @default false
              */
-            is_sent_dps: boolean;
+            is_sent_dps?: boolean;
             fiscal_api_type?: components["schemas"]["FiscalAPIType"];
             type: components["schemas"]["ReceiptType"];
             transaction?: components["schemas"]["ShortTransaction"];
@@ -8605,7 +8605,7 @@ export interface components {
              * Technical Return
              * @default false
              */
-            technical_return: boolean;
+            technical_return?: boolean;
             /** Stock Code */
             stock_code?: string;
             currency_exchange?: components["schemas"]["CurrencyExchangeSchema"];
@@ -8678,7 +8678,7 @@ export interface components {
              * Children
              * @default []
              */
-            children: components["schemas"]["GoodModelBase"][];
+            children?: components["schemas"]["GoodModelBase"][];
             /** Related Barcodes */
             related_barcodes?: string;
             /** Branches */

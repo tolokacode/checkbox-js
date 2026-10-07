@@ -8,6 +8,10 @@
     "type": "git",
     "url": "git+https://github.com/tolokacode/checkbox-js.git"
   },
+  "homepage": "https://github.com/tolokacode/checkbox-js#readme",
+  "bugs": {
+    "url": "https://github.com/tolokacode/checkbox-js/issues"
+  },
   "keywords": [
     "checkbox",
     "prro",
@@ -27,15 +31,20 @@
   "files": [
     "dist"
   ],
+  "sideEffects": false,
   "engines": {
     "node": ">=18"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "scripts": {
     "build": "tsc",
     "test": "vitest run",
-    "typecheck": "tsc --noEmit",
-    "generate": "openapi-typescript https://api.checkbox.in.ua/api/openapi.json -o src/schema.ts",
-    "prepublishOnly": "npm run build"
+    "typecheck": "tsc --noEmit && tsc -p test",
+    "generate": "openapi-typescript https://api.checkbox.in.ua/api/openapi.json --default-non-nullable=false -o src/schema.ts",
+    "prepublishOnly": "npm run typecheck && npm test && npm run build",
+    "version": "node -e \"const fs=require('fs');fs.writeFileSync('src/index.ts',fs.readFileSync('src/index.ts','utf8').replace(/VERSION = '[^']+'/,'VERSION = \\''+require('./package.json').version+'\\''))\" && git add src/index.ts"
   },
   "devDependencies": {
     "@types/node": "^26.6.4",

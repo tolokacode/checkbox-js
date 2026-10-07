@@ -17,7 +17,4 @@ jobs:
       - run: npm ci
       - run: npm run typecheck
       - run: npm test
-        env:
-          CHECKBOX_LICENSE_KEY: ${{ secrets.CHECKBOX_LICENSE_KEY }}
-          CHECKBOX_PIN: ${{ secrets.CHECKBOX_PIN }}
       - run: npm run build

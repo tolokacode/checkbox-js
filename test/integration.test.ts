@@ -1,6 +1,6 @@
 import { randomUUID } from 'node:crypto';
 import { describe, expect, it } from 'vitest';
-import { Checkbox } from '../src/index.js';
+import { Checkbox, orderReceipt } from '../src/index.js';
 
 const licenseKey = process.env.CHECKBOX_LICENSE_KEY;
 const pinCode = process.env.CHECKBOX_PIN;
@@ -39,4 +39,21 @@ describe.skipIf(!licenseKey || !pinCode)('Checkbox test register', () => {
     const returned = await checkbox.returnPrepayment(pre.pre_payment_relation_id!);
     expect(returned.length).toBe(2);
   }, 90000);
+
+  it('sells an order with shipping and a discount', async () => {
+    await checkbox.ensureShift();
+    const order = orderReceipt({
+      lines: [
+        { code: 'sdk-cup', name: 'SDK cup', quantity: 3, total: 10000 },
+        { code: 'sdk-tea', name: 'SDK tea', quantity: 0.25, total: 5000 },
+      ],
+      shipping: 7000,
+      shippingAs: 'surcharge',
+      discount: 2000,
+    });
+    const sale = await checkbox.sell({ id: randomUUID(), goods: order.goods, discounts: order.discounts, payments: [{ type: 'CASHLESS', value: order.sum, label: 'Інтернет еквайринг' }] });
+    const done = await checkbox.waitForReceipt(sale.id);
+    expect(done.status).toBe('DONE');
+    expect(done.total_sum).toBe(order.sum);
+  }, 60000);
 });

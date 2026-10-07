@@ -1,5 +1,9 @@
 import type { components } from './schema.js';
 
+export * from './receipt.js';
+
+export const VERSION = '0.1.0';
+
 export type Schemas = components['schemas'];
 export type ReceiptPayload = Schemas['ReceiptSellPayload'];
 export type PrepaymentPayload = Schemas['PrePaymentReceiptPayload'];
@@ -8,6 +12,15 @@ export type Receipt = Schemas['ReceiptModel'];
 export type Shift = Schemas['ShiftWithCashRegisterModel'];
 export type Cashier = Schemas['CashierModel'];
 
+export interface RequestLog {
+  method: string;
+  path: string;
+  /** 0 when the request did not reach Checkbox. */
+  status: number;
+  ms: number;
+  error?: string;
+}
+
 export interface CheckboxOptions {
   /** Cash register license key (X-License-Key). */
   licenseKey: string;
@@ -15,6 +28,11 @@ export interface CheckboxOptions {
   pinCode?: string;
   login?: string;
   password?: string;
+  /** A saved access token, so serverless functions don't sign in on every call. */
+  token?: string;
+  /** Called with each new token. Save it and pass it back as `token`. */
+  onToken?: (token: string) => void | Promise<void>;
+  onRequest?: (log: RequestLog) => void;
   baseUrl?: string;
   clientName?: string;
   clientVersion?: string;
@@ -43,6 +61,7 @@ export class Checkbox {
     if (!options.pinCode && !(options.login && options.password)) {
       throw new Error('Checkbox: pass pinCode, or login and password');
     }
+    this.token = options.token;
     this.baseUrl = (options.baseUrl ?? 'https://api.checkbox.in.ua').replace(/\/$/, '') + '/api/v1';
     this.fetch = options.fetch ?? globalThis.fetch.bind(globalThis);
   }
@@ -52,6 +71,7 @@ export class Checkbox {
       ? await this.send<Schemas['CashierAccessTokenResponseModel']>('POST', '/cashier/signinPinCode', { pin_code: this.options.pinCode }, false)
       : await this.send<Schemas['CashierAccessTokenResponseModel']>('POST', '/cashier/signin', { login: this.options.login, password: this.options.password }, false);
     this.token = result.access_token;
+    await this.options.onToken?.(this.token);
     return this.token;
   }
 
@@ -94,9 +114,18 @@ export class Checkbox {
     throw new CheckboxError('Checkbox: the shift did not open in time', 0, shift);
   }
 
-  /** Creates a sale receipt. Pass your own `id` (UUID) to make retries safe. */
-  sell(receipt: ReceiptPayload): Promise<Receipt> {
-    return this.request('POST', '/receipts/sell', receipt);
+  /** Creates a sale receipt. Pass your own `id` (UUID): a retry with the same id returns the receipt that already exists. */
+  async sell(receipt: ReceiptPayload): Promise<Receipt> {
+    try {
+      return await this.request('POST', '/receipts/sell', receipt);
+    } catch (error) {
+      if (receipt.id && error instanceof CheckboxError && error.status === 409) {
+        return this.receipt(receipt.id).catch(() => {
+          throw error;
+        });
+      }
+      throw error;
+    }
   }
 
   /** Creates a return receipt: marks every good as returned. */
@@ -178,7 +207,7 @@ export class Checkbox {
     const headers: Record<string, string> = {
       'X-License-Key': this.options.licenseKey,
       'X-Client-Name': this.options.clientName ?? '@tolokacode/checkbox',
-      'X-Client-Version': this.options.clientVersion ?? '0.1.0',
+      'X-Client-Version': this.options.clientVersion ?? VERSION,
     };
     if (body !== undefined) {
       headers['Content-Type'] = 'application/json';
@@ -187,11 +216,19 @@ export class Checkbox {
       headers.Authorization = `Bearer ${this.token}`;
     }
 
-    const response = await this.fetch(this.baseUrl + path, {
-      method,
-      headers,
-      body: body === undefined ? undefined : JSON.stringify(body),
-    });
+    const started = Date.now();
+    const log = (status: number, error?: string) => this.options.onRequest?.({ method, path, status, ms: Date.now() - started, error });
+    let response: Response;
+    try {
+      response = await this.fetch(this.baseUrl + path, {
+        method,
+        headers,
+        body: body === undefined ? undefined : JSON.stringify(body),
+      });
+    } catch (error) {
+      log(0, String(error));
+      throw error;
+    }
 
     if (!response.ok) {
       const text = await response.text();
@@ -201,8 +238,11 @@ export class Checkbox {
       } catch {
         data = text;
       }
-      throw new CheckboxError(`Checkbox: ${errorMessage(data) || response.statusText}`, response.status, data);
+      const message = errorMessage(data) || response.statusText;
+      log(response.status, message);
+      throw new CheckboxError(`Checkbox: ${message}`, response.status, data);
     }
+    log(response.status);
     if (as === 'binary') {
       return (await response.arrayBuffer()) as T;
     }
