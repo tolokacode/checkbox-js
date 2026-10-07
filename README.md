@@ -120,4 +120,4 @@ When the version in `package.json` is not on npm yet, the Publish workflow tests
 
 ## License
 
-[EUPL-1.2](LICENSE)
+[MIT](LICENSE)

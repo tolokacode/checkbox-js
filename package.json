@@ -1,8 +1,8 @@
 {
   "name": "@tolokacode/checkbox",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "TypeScript SDK for the Checkbox API (ПРРО, fiscal receipts in Ukraine)",
-  "license": "EUPL-1.2",
+  "license": "MIT",
   "author": "tolokacode",
   "repository": {
     "type": "git",

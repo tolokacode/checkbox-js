@@ -2,7 +2,7 @@ import type { components } from './schema.js';
 
 export * from './receipt.js';
 
-export const VERSION = '0.1.0';
+export const VERSION = '0.1.1';
 
 export type Schemas = components['schemas'];
 export type ReceiptPayload = Schemas['ReceiptSellPayload'];
