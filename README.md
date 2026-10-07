@@ -6,8 +6,6 @@ TypeScript SDK for the [Checkbox](https://checkbox.ua) API: fiscal receipts (ÐŸÐ
 - Types are generated from the official Checkbox OpenAPI spec.
 - Tested against a real Checkbox test cash register.
 
-Free and open source. There is no paid version.
-
 ## Install
 
 ```sh
